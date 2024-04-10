@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.1/css/all.css} "/>
+    <meta charset="UTF-8">
+    <title>Movie Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgba(0,0,0);
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: white;
+        }
+        .movie-details {
+            background: rgba(40,40,40,0.3);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .actors {
+            margin-top: 20px;
+        }
+        .actors h2 {
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="movie-details">
+    <h1 th:text="${actor.firstName + ' ' + actor.lastName}"></h1>
+    <p><strong>Age:</strong> <span th:text="${actor.age}"></span> years old</p>
+    <div class="movies" th:if="${actor.movieDTOList}">
+        <h2>Movies:</h2>
+        <ul>
+            <li th:each="movie : ${actor.movieDTOList}" th:text="${movie.name}"></li>
+        </ul>
+    </div>
+    <div class="d-flex justify-content-between">
+        <a th:href="@{/actors/all}" class="btn btn-link text-decoration-none">Go back</a>
+    </div>
+</div>
+</body>
+</html>
